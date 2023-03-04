@@ -37,8 +37,8 @@ class StreamLit:
             largeGraphic = st.radio("Is the print a large graphic (greater than 14.8 (W) x 21.0 (H) cm?", ['No', 'Yes'])
             screens = numOfColour
             addOns = st.multiselect("Are there any add ons?", options=['Puff Print', 'Neck Prints', 'Outsourced Labels'])
-            st.write("")
-            st.write("")     
+            st.write("\n")
+            st.write("\n")     
         
 
         x, xy, w, g, c, s, addOnTotal, initialEquation, equation = Utilities.calculateContractJob(cusSupply, numOfShirt, garmentCost, numOfColour, 
@@ -51,9 +51,6 @@ class StreamLit:
             st.write("")
             Utilities.printOut(cusSupply, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, initialEquation, equation)
             Utilities.customerForm()
-
-
-        
 
 class Utilities:
 
@@ -175,7 +172,7 @@ class Utilities:
         
         bottom_col_1, bottom_col_2 = st.columns(2)
         bottom_col_1.metric("**Total Cost**: $", initialEquation)
-        bottom_col_2.subheader("**Cost per Shirt**: $", equation/numOfShirt)
+        bottom_col_2.subheader("**Cost per Shirt**: $", (equation/numOfShirt))
 
         st.write("")
 
