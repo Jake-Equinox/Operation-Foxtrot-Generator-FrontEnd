@@ -6,8 +6,8 @@ class StreamLit:
         st.title("Foxtrot Quote Generator 🦊")
         
         text = "Hey there 👋 This is an instant quote generator made from scratch by the Foxtrot Team!  \n \
-              \n Fill out of the side bar on the left to get started. Please \
-        know that this is a work in progress and issues do occur. If they do, please email us at: FoxtrotPrints@gmail.com so we can squash any bugs 🪲  \n \
+              \n Fill out of the side bar on the left to get started. Press the '>' arrow if it's not there. \n \
+              \n Please know that this is a work in progress and issues do occur. If they do, please email us at: FoxtrotPrints@gmail.com so we can squash any bugs 🪲  \n \
               \n **Final quote is subject to evaluation by the Foxtrot Team!**"
 
         st.info(text)
@@ -49,7 +49,7 @@ class StreamLit:
         else:
             st.write("")
             Utilities.printOut(cusSupply, featuredArtist, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, initialEquation, equation, discount)
-
+            Utilities.customerForm()
 
 
         
@@ -178,25 +178,62 @@ class Utilities:
             st.metric("Large Graphic", g == 0.5)
 
             
-        st.markdown("---")
-        # with st.expander("Summary"):
-        #     st.write(f"Number of Shirts: {numOfShirt:<10}")
-        #     st.write(f"Returning Artist: {featuredArtist == 'Yes'!s:<10}")
-        #     st.write(f"Baseline Shirt Cost: {xy:<10}")
-        #     st.write(f"Total Shirt Cost Price: ${x:<10}")
-        #     st.write(f"Large Graphic:    {g == 0.5!s:<10}")
-        #     st.write(f"Total AddOns:     ${addOnTotal:<10}")
-        #     st.write(f"Cost of Colours:  ${c:<10}")
-        #     st.write(f"Cost of Screens:  ${s:<10}")
-        #     st.write(f"Before Discount:  ${initialEquation:<10}")
-        #     st.write(f"Discount Amount:  ${round(discount, 2):<10}")
+        # st.markdown("---")
         
         bottom_col_1, bottom_col_2 = st.columns(2)
-        bottom_col_1.subheader(f"**Total Cost**: ${round((initialEquation - discount)):<10}")
-        bottom_col_2.subheader(f"**Cost per Shirt**:   ${round(equation/numOfShirt, 2):<10}")
+        bottom_col_1.subheader("**Total Cost**: $" + str(initialEquation - discount))
+        bottom_col_2.subheader("**Cost per Shirt**: $" + str(equation/numOfShirt))
 
-    def customer_form():
-        pass
+        st.write("")
+
+        with st.expander("**Summary**"):
+            st.write(f"Number of Shirts: {numOfShirt:<10}")
+            st.write(f"Returning Artist: {featuredArtist == 'Yes'!s:<10}")
+            st.write(f"Baseline Shirt Cost: {xy:<10}")
+            st.write(f"Total Shirt Cost Price: ${x:<10}")
+            st.write(f"Large Graphic:    {g == 0.5!s:<10}")
+            st.write(f"Total AddOns:     ${addOnTotal:<10}")
+            st.write(f"Cost of Colours:  ${c:<10}")
+            st.write(f"Cost of Screens:  ${s:<10}")
+            st.write(f"Before Discount:  ${initialEquation:<10}")
+            st.write(f"Discount Amount:  ${round(discount, 2):<10}")
+
+        st.markdown("---")
+
+    def customerForm():
+        
+        contact_form = """
+        <form action="https://formsubmit.co/foxtrotprints@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="name", placeholder = "Your Name" required>
+            <input type="email" name="email", placeholder = "Your Email Address" required>
+            <textarea name="message" placeholder="Paste 'Summary' Here!"></textarea>
+            <input type="hidden" name="_next" value="https://jake-equinox-operation-foxtrot-generator-frontend-main-qg39s7.streamlit.app/">
+            <button type="submit">Send</button>
+        </form>
+        """
+        st.header("📬 Send A Quote!")
+
+        form_text = """
+        Instructions on Sending a Quote
+        1. Complete the series of questions in the side-bar navigation.
+        2. Expand the 'Summary' tab just above this header.
+        3. Copy the 'Summary'.
+        4. Paste the 'Summary' into the text field below.
+        5. Hit 'Submit' ❤️‍🔥
+        
+        """
+
+        st.success(form_text)
+
+        st.markdown(contact_form, unsafe_allow_html = True)
+        Utilities.localCSS("style/style.css")
+
+    def localCSS(file_name):
+        with open(file_name) as f:
+            st.markdown(f"<style>{f.read()}<style>", unsafe_allow_html = True)
+        
+    
 
 
 def main():
