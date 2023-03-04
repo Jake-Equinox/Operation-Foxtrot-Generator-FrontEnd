@@ -220,7 +220,7 @@ class Utilities:
         2. Expand the 'Summary' tab just above this header.
         3. Copy the 'Summary'.
         4. Paste the 'Summary' into the text field below.
-        5. Hit 'Submit' ❤️‍🔥
+        5. Hit 'Send' ❤️‍🔥
         
         """
 
