@@ -174,8 +174,8 @@ class Utilities:
         # st.markdown("---")
         
         bottom_col_1, bottom_col_2 = st.columns(2)
-        bottom_col_1.subheader("**Total Cost**: $" + str(initialEquation))
-        bottom_col_2.subheader("**Cost per Shirt**: $" + str(equation/numOfShirt))
+        bottom_col_1.metric("**Total Cost**: $", initialEquation)
+        bottom_col_2.subheader("**Cost per Shirt**: $", equation/numOfShirt)
 
         st.write("")
 
