@@ -41,7 +41,7 @@ class StreamLit:
             st.write("\n")     
         
 
-        x, xy, w, g, c, s, addOnTotal, initialEquation, equation = Utilities.calculateContractJob(cusSupply, numOfShirt, garmentCost, numOfColour, 
+        x, xy, w, g, c, s, addOnTotal, initialEquation = Utilities.calculateContractJob(cusSupply, numOfShirt, garmentCost, numOfColour, 
                             whitePrint, whiteQuantity, twoSides, backNum, largeGraphic, screens, addOns)
 
 
@@ -49,7 +49,7 @@ class StreamLit:
             st.error("Please complete sidebar before continuing!")
         else:
             st.write("")
-            Utilities.printOut(cusSupply, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, initialEquation, equation)
+            Utilities.printOut(cusSupply, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, initialEquation)
             Utilities.customerForm()
 
 class Utilities:
@@ -147,7 +147,7 @@ class Utilities:
             initialEquation = equation
 
         
-        return x, xy, w, g, c, s, addOnTotal, initialEquation, equation
+        return x, xy, w, g, c, s, addOnTotal, initialEquation
 
     def printOut(cusSupply, featuredArtist, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, initialEquation, equation):
 
