@@ -172,7 +172,7 @@ class Utilities:
         
         bottom_col_1, bottom_col_2 = st.columns(2)
         bottom_col_1.metric("**Total Cost**: $", initialEquation)
-        bottom_col_2.subheader("**Cost per Shirt**: $", (equation/numOfShirt))
+        bottom_col_2.subheader("**Cost per Shirt**: $", (initialEquation/numOfShirt))
 
         st.write("")
 
