@@ -41,7 +41,7 @@ class StreamLit:
             st.write("\n")     
         
 
-        x, xy, w, g, c, s, addOnTotal, initialEquation = Utilities.calculateContractJob(cusSupply, numOfShirt, garmentCost, numOfColour, 
+        x, xy, w, g, c, s, addOnTotal, equation = Utilities.calculateContractJob(cusSupply, numOfShirt, garmentCost, numOfColour, 
                             whitePrint, whiteQuantity, twoSides, backNum, largeGraphic, screens, addOns)
 
 
@@ -49,7 +49,7 @@ class StreamLit:
             st.error("Please complete sidebar before continuing!")
         else:
             st.write("")
-            Utilities.printOut(cusSupply, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, initialEquation)
+            Utilities.printOut(cusSupply, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, equation)
             Utilities.customerForm()
 
 class Utilities:
@@ -139,17 +139,15 @@ class Utilities:
                         ((numOfShirt - int(whiteQuantity)) * c) + \
                         int((whiteQuantity) * w) + \
                         (numOfShirt * g) + (s))
-            initialEquation = equation
 
         else:
             equation = int((numOfShirt * (x + c)) + (numOfShirt *
                                                     addOnTotal) + (numOfShirt * g) + (s))
-            initialEquation = equation
 
         
-        return x, xy, w, g, c, s, addOnTotal, initialEquation
+        return x, xy, w, g, c, s, addOnTotal, equation
 
-    def printOut(cusSupply, featuredArtist, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, initialEquation, equation):
+    def printOut(cusSupply, numOfShirt, garmentCost, x, xy, w, g, c, s, addOnTotal, equation):
 
         col1, col2, col3 = st.columns(3)
 
@@ -168,17 +166,16 @@ class Utilities:
             st.metric("Large Graphic", g == 0.5)
 
             
-        # st.markdown("---")
+        st.markdown("---")
         
-        bottom_col_1, bottom_col_2 = st.columns(2)
-        bottom_col_1.metric("**Total Cost**: $", initialEquation)
-        bottom_col_2.subheader("**Cost per Shirt**: $", (initialEquation/numOfShirt))
+        bottom_col_1, bottom_col_2, bottom_col_3 = st.columns(3)
+        bottom_col_1.metric("Total Cost: $", equation)
+        bottom_col_3.metric("Cost per Shirt: $", equation/numOfShirt)
 
         st.write("")
 
         with st.expander("**Summary**"):
             st.write(f"Number of Shirts: {numOfShirt:<10}")
-            st.write(f"Returning Artist: {featuredArtist == 'Yes'!s:<10}")
             st.write(f"Baseline Shirt Cost: {xy:<10}")
             st.write(f"Total Shirt Cost Price: ${x:<10}")
             st.write(f"Large Graphic:    {g == 0.5!s:<10}")
@@ -200,7 +197,7 @@ class Utilities:
             <button type="submit">Send</button>
         </form>
         """
-        st.header("📬 Send A Quote!")
+        st.header("📬 Follow Up on your Quote!")
 
         form_text = """
         Instructions on Sending a Quote
